@@ -17,10 +17,11 @@ import {
 } from "@chakra-ui/react";
 import { FaBath, FaBed, FaRulerCombined, FaDollarSign, FaHome, FaStar } from 'react-icons/fa';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 export default function PropertyDetail() {
   const { id } = useParams();
+  const history = useHistory();
   const [property, setProperty] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [averageRating, setAverageRating] = useState(null);
@@ -67,6 +68,14 @@ export default function PropertyDetail() {
   if (!property) {
     return <Flex justify="center" align="center" h="100vh"><Spinner size="xl" /></Flex>;
   }
+
+  const handleBookNow = () => {
+    history.push(`/booking/${id}`);
+  };
+
+  const handleWriteReview = () => {
+    history.push(`/write-review/${id}`);
+  };
 
   return (
     <Box pt={{ base: "100px", md: "80px", xl: "80px" }} px={{ base: "20px", md: "40px", xl: "60px" }}>
@@ -145,6 +154,12 @@ export default function PropertyDetail() {
               )}
             </Box>
           )}
+          <Button mt="6" colorScheme="blue" onClick={handleBookNow}>
+            Book Now
+          </Button>
+          <Button mt="6" colorScheme="green" onClick={handleWriteReview}>
+            Write a Review
+          </Button>
         </Box>
       </Box>
     </Box>
