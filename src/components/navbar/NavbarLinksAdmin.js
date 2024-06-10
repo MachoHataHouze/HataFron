@@ -25,6 +25,7 @@ import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
 import { FaEthereum } from 'react-icons/fa';
 import routes from 'routes.js';
 import { ThemeEditor } from './ThemeEditor';
+
 export default function HeaderLinks(props) {
 	const { secondary } = props;
 	// Chakra Color Mode
@@ -41,16 +42,19 @@ export default function HeaderLinks(props) {
 		'14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
 	);
 	const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+
 	return (
 		<Flex
+			className="navbar"
 			w={{ sm: '100%', md: 'auto' }}
 			alignItems="center"
 			flexDirection="row"
 			bg={menuBg}
 			flexWrap={secondary ? { base: 'wrap', md: 'nowrap' } : 'unset'}
 			p="10px"
-			borderRadius="30px"
-			boxShadow={shadow}>
+			borderRadius="0px"
+			boxShadow={shadow}
+		>
 			<SearchBar mb={secondary ? { base: '10px', md: 'unset' } : 'unset'} me="10px" borderRadius="30px" />
 			<Flex
 				bg={ethBg}
@@ -59,7 +63,8 @@ export default function HeaderLinks(props) {
 				ms="auto"
 				p="6px"
 				align="center"
-				me="6px">
+				me="6px"
+			>
 				<Flex align="center" justify="center" bg={ethBox} h="29px" w="29px" borderRadius="30px" me="7px">
 					<Icon color={ethColor} w="9px" h="14px" as={FaEthereum} />
 				</Flex>
@@ -85,7 +90,8 @@ export default function HeaderLinks(props) {
 					mt="22px"
 					me={{ base: '30px', md: 'unset' }}
 					minW={{ base: 'unset', md: '400px', xl: '450px' }}
-					maxW={{ base: '360px', md: 'unset' }}>
+					maxW={{ base: '360px', md: 'unset' }}
+				>
 					<Flex jusitfy="space-between" w="100%" mb="20px">
 						<Text fontSize="md" fontWeight="600" color={textColor}>
 							Notifications
@@ -105,64 +111,70 @@ export default function HeaderLinks(props) {
 				</MenuList>
 			</Menu>
 
-      <Menu>
-        <MenuButton p='0px'>
-          <Icon
-            mt='6px'
-            as={MdInfoOutline}
-            color={navbarIcon}
-            w='18px'
-            h='18px'
-            me='10px'
-          />
-        </MenuButton>
-        <MenuList
-          boxShadow={shadow}
-          p='20px'
-          me={{ base: "30px", md: "unset" }}
-          borderRadius='20px'
-          bg={menuBg}
-          border='none'
-          mt='22px'
-          minW={{ base: "unset" }}
-          maxW={{ base: "360px", md: "unset" }}>
-          <Image src={navImage} borderRadius='16px' mb='28px' />
-          <Flex flexDirection='column'>
-            <Link
-              w='100%'
-              href='https://horizon-ui.com/pro?ref=horizon-chakra-free'>
-              <Button w='100%' h='44px' mb='10px' variant='brand'>
-                Buy Horizon UI PRO
-              </Button>
-            </Link>
-            <Link
-              w='100%'
-              href='https://horizon-ui.com/documentation/docs/introduction?ref=horizon-chakra-free'>
-              <Button
-                w='100%'
-                h='44px'
-                mb='10px'
-                border='1px solid'
-                bg='transparent'
-                borderColor={borderButton}>
-                See Documentation
-              </Button>
-            </Link>
-            <Link
-              w='100%'
-              href='https://github.com/horizon-ui/horizon-ui-chakra'>
-              <Button
-                w='100%'
-                h='44px'
-                variant='no-hover'
-                color={textColor}
-                bg='transparent'>
-                Try Horizon Free
-              </Button>
-            </Link>
-          </Flex>
-        </MenuList>
-      </Menu>
+			<Menu>
+				<MenuButton p='0px'>
+					<Icon
+						mt='6px'
+						as={MdInfoOutline}
+						color={navbarIcon}
+						w='18px'
+						h='18px'
+						me='10px'
+					/>
+				</MenuButton>
+				<MenuList
+					boxShadow={shadow}
+					p='20px'
+					me={{ base: "30px", md: "unset" }}
+					borderRadius='20px'
+					bg={menuBg}
+					border='none'
+					mt='22px'
+					minW={{ base: "unset" }}
+					maxW={{ base: "360px", md: "unset" }}
+				>
+					<Image src={navImage} borderRadius='16px' mb='28px' />
+					<Flex flexDirection='column'>
+						<Link
+							w='100%'
+							href='https://horizon-ui.com/pro?ref=horizon-chakra-free'
+						>
+							<Button w='100%' h='44px' mb='10px' variant='brand'>
+								Buy Horizon UI PRO
+							</Button>
+						</Link>
+						<Link
+							w='100%'
+							href='https://horizon-ui.com/documentation/docs/introduction?ref=horizon-chakra-free'
+						>
+							<Button
+								w='100%'
+								h='44px'
+								mb='10px'
+								border='1px solid'
+								bg='transparent'
+								borderColor={borderButton}
+							>
+								See Documentation
+							</Button>
+						</Link>
+						<Link
+							w='100%'
+							href='https://github.com/horizon-ui/horizon-ui-chakra'
+						>
+							<Button
+								w='100%'
+								h='44px'
+								variant='no-hover'
+								color={textColor}
+								bg='transparent'
+							>
+								Try Horizon Free
+							</Button>
+						</Link>
+					</Flex>
+				</MenuList>
+			</Menu>
 
 			<ThemeEditor navbarIcon={navbarIcon} />
 
@@ -189,7 +201,8 @@ export default function HeaderLinks(props) {
 							borderColor={borderColor}
 							fontSize="sm"
 							fontWeight="700"
-							color={textColor}>
+							color={textColor}
+						>
 							👋&nbsp; Hey, Adela
 						</Text>
 					</Flex>
@@ -205,7 +218,8 @@ export default function HeaderLinks(props) {
 							_focus={{ bg: 'none' }}
 							color="red.400"
 							borderRadius="8px"
-							px="14px">
+							px="14px"
+						>
 							<Text fontSize="sm">Log out</Text>
 						</MenuItem>
 					</Flex>
