@@ -4,16 +4,15 @@ import 'assets/css/App.css';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import AuthLayout from 'layouts/auth';
 import SignUp from 'views/auth/signIn/SignUp';
-import BookingForm from 'views/admin/default/BookingForm';
-import PaymentForm from 'views/admin/default/PaymentForm';
-import PaymentSuccess from 'views/admin/default/PaymentSuccess';
-import ReviewForm from 'views/admin/default/ReviewForm';
-import Chat from 'views/admin/default/Chat';
-import ChatList from 'views/admin/default/ChatList';
+import BookingForm from 'views/admin/default/Booking/BookingForm';
+import PaymentForm from 'views/admin/default/Booking/PaymentForm';
+import PaymentSuccess from 'views/admin/default/Booking/PaymentSuccess';
+import ReviewForm from 'views/admin/default/Booking/ReviewForm';
+import Chat from 'views/admin/default/Chat/Chat';
+import ChatList from 'views/admin/default/Chat/ChatList';
 import AdminLayout from 'layouts/admin';
-import RtlLayout from 'layouts/rtl';
 import { ChakraProvider } from '@chakra-ui/react';
-import PropertyDetail from 'views/admin/default/PropertyDetail';
+import PropertyDetail from 'views/admin/default/Property/PropertyDetail';
 import theme from 'theme/theme';
 import { ThemeEditorProvider } from '@hypertheme-editor/chakra-ui';
 
@@ -26,7 +25,6 @@ ReactDOM.render(
             <Route path={`/auth`} component={AuthLayout} />
 			<Route path="/sign-up" component={SignUp} />
             <Route path={`/admin`} component={AdminLayout} />
-            <Route path={`/rtl`} component={RtlLayout} />
             <Route path="/property/:id" component={PropertyDetail} />
             <Route path="/sign-up" component={SignUp} /> {/* Добавьте маршрут для SignIn */}
 			<Route path="/booking/:id" component={BookingForm} />
