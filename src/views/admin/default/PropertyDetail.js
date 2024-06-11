@@ -77,6 +77,10 @@ export default function PropertyDetail() {
     history.push(`/write-review/${id}`);
   };
 
+  const handleContactSeller = () => {
+    history.push(`/chat/${property.ownerId}`); // Перейти на страницу чата с продавцом
+  };
+
   return (
     <Box pt={{ base: "100px", md: "80px", xl: "80px" }} px={{ base: "20px", md: "40px", xl: "60px" }}>
       <Box 
@@ -159,6 +163,9 @@ export default function PropertyDetail() {
           </Button>
           <Button mt="6" colorScheme="green" onClick={handleWriteReview}>
             Write a Review
+          </Button>
+          <Button mt="6" colorScheme="purple" onClick={handleContactSeller}>
+            Contact Seller
           </Button>
         </Box>
       </Box>

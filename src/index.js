@@ -8,6 +8,8 @@ import BookingForm from 'views/admin/default/BookingForm';
 import PaymentForm from 'views/admin/default/PaymentForm';
 import PaymentSuccess from 'views/admin/default/PaymentSuccess';
 import ReviewForm from 'views/admin/default/ReviewForm';
+import Chat from 'views/admin/default/Chat';
+import ChatList from 'views/admin/default/ChatList';
 import AdminLayout from 'layouts/admin';
 import RtlLayout from 'layouts/rtl';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -28,6 +30,8 @@ ReactDOM.render(
             <Route path="/property/:id" component={PropertyDetail} />
             <Route path="/sign-up" component={SignUp} /> {/* Добавьте маршрут для SignIn */}
 			<Route path="/booking/:id" component={BookingForm} />
+			<Route path="/chat/:id" component={Chat} />
+			<Route path="/chats" component={ChatList} />
 			<Route path="/payment" component={PaymentForm} /> 
 			<Route path="/payment-success" component={PaymentSuccess} />
 			<Route path="/write-review/:id" component={ReviewForm} /> 
