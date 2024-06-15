@@ -34,7 +34,7 @@ const BookingForm = () => {
 
     const token = localStorage.getItem('token');
     if (!token) {
-      setError('Please login to make a booking.');
+      setError('Пожалуйста, войдите в систему, чтобы сделать бронирование.');
       setIsLoading(false);
       return;
     }
@@ -57,17 +57,18 @@ const BookingForm = () => {
 
       console.log('Booking response:', response);
 
-      setSuccess('Booking successful!');
+      setSuccess('Бронирование успешно!');
       setIsLoading(false);
 
-      // Перенаправление на страницу оплаты
-      history.push(`/payment?bookingId=${response.data.id}&totalPrice=${response.data.totalPrice}`);
+      // Перенаправление на страницу оплаты с ссылкой на договор
+      const contractLink = `data:application/pdf;base64,${response.data.contract}`;
+      history.push(`/payment?bookingId=${response.data.id}&totalPrice=${response.data.totalPrice}&contractLink=${encodeURIComponent(contractLink)}`);
     } catch (error) {
       console.error('Booking error:', error.response ? error.response.data : error.message);
       if (error.response) {
-        setError(`Booking failed: ${error.response.data.message || error.response.statusText}`);
+        setError(`Бронирование не удалось: ${error.response.data.message || error.response.statusText}`);
       } else {
-        setError('Booking failed. Please try again.');
+        setError('Бронирование не удалось. Пожалуйста, попробуйте снова.');
       }
       setIsLoading(false);
     }
@@ -85,11 +86,11 @@ const BookingForm = () => {
         boxShadow="lg"
       >
         <Heading size="lg" mb="6">
-          Book Property
+          Забронировать жилье
         </Heading>
         <VStack spacing="4">
           <FormControl isRequired>
-            <FormLabel>Start Date</FormLabel>
+            <FormLabel>Дата начала</FormLabel>
             <Input
               type="date"
               value={startDate}
@@ -97,7 +98,7 @@ const BookingForm = () => {
             />
           </FormControl>
           <FormControl isRequired>
-            <FormLabel>End Date</FormLabel>
+            <FormLabel>Дата окончания</FormLabel>
             <Input
               type="date"
               value={endDate}
@@ -111,7 +112,7 @@ const BookingForm = () => {
             onClick={handleBooking}
             isLoading={isLoading}
           >
-            Confirm Booking
+            Подтвердить бронирование
           </Button>
         </VStack>
       </Box>

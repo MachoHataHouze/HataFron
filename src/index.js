@@ -11,6 +11,7 @@ import ReviewForm from 'views/admin/default/Booking/ReviewForm';
 import Chat from 'views/admin/default/Chat/Chat';
 import ChatList from 'views/admin/default/Chat/ChatList';
 import AddProperty from 'views/admin/default/Property/AddProperty';
+import Profile from 'views/admin/default/Profile';
 import AdminLayout from 'layouts/admin';
 import { ChakraProvider } from '@chakra-ui/react';
 import PropertyDetail from 'views/admin/default/Property/PropertyDetail';
@@ -34,6 +35,7 @@ ReactDOM.render(
 			<Route path="/chats" component={ChatList} />
 			<Route path="/payment" component={PaymentForm} /> 
 			<Route path="/payment-success" component={PaymentSuccess} />
+			<Route path="/profile" component={Profile} />
 			<Route path="/write-review/:id" component={ReviewForm} /> 
             <Redirect from='/' to='/admin' />
           </Switch>
