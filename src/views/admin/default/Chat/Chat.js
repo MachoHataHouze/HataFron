@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, VStack, Text, FormControl, Input, Button } from '@chakra-ui/react';
+import { Box, VStack, Text, FormControl, Input, Button, HStack, Avatar, useColorModeValue } from '@chakra-ui/react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -84,31 +84,49 @@ const Chat = () => {
     }
   };
 
+  const bgColor = useColorModeValue('gray.100', 'gray.700');
+  const sentMessageColor = useColorModeValue('blue.100', 'blue.700');
+  const receivedMessageColor = useColorModeValue('gray.300', 'gray.500');
+
   return (
-    <Box p={4}>
-      <VStack spacing={4} align="stretch">
+    <Box p={4} bg={bgColor} minH="100vh">
+      <VStack spacing={4} align="stretch" overflowY="auto" maxH="80vh" mb={4}>
         {messages.map((msg, index) => (
-          <Box key={index} p={4} bg={msg.senderId === id ? 'blue.100' : 'gray.100'} borderRadius="md">
-            <Text>{msg.message}</Text>
-            <Text fontSize="xs" color="gray.500" ml={2}>
-              {moment(msg.timestamp).format('HH:mm:ss')}
-            </Text>
+          <Box
+            key={index}
+            p={4}
+            bg={msg.senderId === id ? sentMessageColor : receivedMessageColor}
+            borderRadius="md"
+            alignSelf={msg.senderId === id ? 'flex-end' : 'flex-start'}
+            maxW="70%"
+          >
+            <HStack align="start">
+              <Avatar size="sm" name={`${msg.senderId}`} />
+              <Box>
+                <Text>{msg.message}</Text>
+                <Text fontSize="xs" color="gray.500">
+                  {moment(msg.timestamp).format('HH:mm:ss')}
+                </Text>
+              </Box>
+            </HStack>
           </Box>
         ))}
       </VStack>
       <FormControl mt={4}>
-        <Input
-          placeholder="Type your message..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <Button mt={2} colorScheme="blue" onClick={handleSendMessage}>
-          Send
-        </Button>
+        <HStack>
+          <Input
+            placeholder="Type your message..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            bg={useColorModeValue('white', 'gray.800')}
+          />
+          <Button colorScheme="blue" onClick={handleSendMessage}>
+            Send
+          </Button>
+        </HStack>
       </FormControl>
     </Box>
   );
 };
 
 export default Chat;
-
